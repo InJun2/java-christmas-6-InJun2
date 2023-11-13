@@ -2,7 +2,7 @@ package christmas.model.event;
 
 import christmas.model.menu.MenuCategory;
 
-public enum DiscountDateWeek {
+public enum WeekDiscountType {
     WEEKDAY("평일 할인", MenuCategory.DESSERT, 2023),
     WEEKEND("주말 할인", MenuCategory.MAIN_COURSE, 2023),
     ;
@@ -11,7 +11,7 @@ public enum DiscountDateWeek {
     private final MenuCategory discountCategory;
     private final int discountPrice;
 
-    DiscountDateWeek(String dateType, MenuCategory discountCategory,
+    WeekDiscountType(String dateType, MenuCategory discountCategory,
                      int discountPrice) {
         this.dateType = dateType;
         this.discountCategory = discountCategory;
