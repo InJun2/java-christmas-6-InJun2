@@ -29,27 +29,39 @@
   - 적용된 이벤트가 없다면 '없음' 출력
 
 ### 예외 처리
-- [ ] 잘못된 날짜 입력의 경우
-- [ ] 잘못된 메뉴명 입력의 경우
-- [ ] 중복 메뉴명 입력의 경우
-- [ ] 총 주문 금액 10000원 보다 낮을 경우
-- [ ] 음료만 주문 시 주문 불가능
-- [ ] 메뉴는 한번에 20개까지 주문 가능
+- 날짜 입력 예외
+  - [ ] 잘못된 날짜 입력의 경우
+  - [ ] 날짜가 정수형으로 변경이 안될 때
+- 메뉴 입력 예외
+  - [ ] 잘못된 메뉴명 입력의 경우
+  - [ ] 중복 메뉴명 입력의 경우
+  - [ ] 메뉴 개수가 정수형으로 변경이 안될 때
+  - [ ] 메뉴 개수가 음수 일 때
+  - [ ] 총 주문 금액 10000원 보다 낮을 경우
+  - [ ] 음료만 주문 시 주문 불가능
+  - [ ] 주문 메뉴가 20개를 넘을 때
 
 ### 클래스 구조
 - InputView : 화면 입력을 담당하는 뷰
+  - InputViewMessage : 입력을 위한 메시지를 관리하는 Enum
 - OutputView : 화면 출력을 담당하는 뷰
+  - OutputViewMessage : 출력을 위한 메시지를 관리하는 Enum
 - PromotionStart : 뷰와 컨트롤러를 연결하는 클래스로 요청 전달
+- PromotionController : 비즈니스 로직을 실행하기 위해 요청을 전달하는 컨트롤러
 - PromotionService : 프로모션 유효성 검증을 거친 객체 생성과 비즈니스 로직을 실행할 서비스
 - TextProcessor : 뷰로 출력하기 위해 문자열을 조작하여 반환하기 위한 서비스
-- MenuItem : 메뉴 이름과 가격, 메뉴 종류를 저장하는 Enum
+- OrderMenus : 주문 메뉴와 개수 저장하는 클래스
+  - MenuItem : 메뉴 이름과 가격, 메뉴 종류를 저장하는 Enum
   - MenuCategory : 메뉴 종류를 구분하는 Enum
 - ReservationDate : 입력된 날짜를 저장하기 위한 클래스
-  - DiscountDate : 주말 할인, 평일 할인을 구분하는 Enum
-  - PromotionDate : 특별 할인 일자가 저장되어 있는 Enum
-- GiftEvent : 증정 상품 여부를 관리하는 Enum
-- RewardBadge : 이벤트 배지를 관리하는 Enum
-- CustomIllegalArgumentException : 지정된 Enum 예외 메시지를 통해 값를 담아 IllegalArgumentException 생성
+- AllEvent : 적용 중인 모든 이벤트를 저장하는 클래스
+  - ReservationDateEvent : 날짜 관련 이벤트 저장 클래스
+    - ChristmasDiscount : 크리스마스 Dday 할인 관리 클래스
+    - DiscountDateWeek : 주말 할인, 평일 할인을 구분하는 Enum
+    - SpecialDiscountDate : 특별 할인 일자가 저장되어 있는 Enum
+  - GiftEvent : 증정 상품 여부를 관리하는 Enum
+  - RewardBadge : 이벤트 배지를 관리하는 Enum
+- PromotionException : 지정된 Enum 예외 메시지를 통해 값를 담아 IllegalArgumentException 생성
   - ExceptionMessage : 예외 발생 메시지를 보관한 Enum Class
 - 테스트 : 클래스별 메소드 단위 테스트 진행
 
