@@ -11,8 +11,8 @@ public class ReservationDateEvent {
 
     private final ReservationDate reservationDate;
     private final ChristmasDiscount christmasDiscount;
-    private final DiscountDateWeek discountDateWeek;
-    private final SpecialDiscountDate specialDiscountDate;
+    private final WeekDiscountType discountDateWeek;
+    private final SpecialDayDiscount specialDiscountDate;
 
     public ReservationDateEvent(int day) {
         this.reservationDate = new ReservationDate(day);
@@ -21,22 +21,22 @@ public class ReservationDateEvent {
         this.specialDiscountDate = initSpecialDiscountDate(reservationDate);
     }
 
-    private DiscountDateWeek initDiscountDateWeek(ReservationDate reservationDate) {
+    private WeekDiscountType initDiscountDateWeek(ReservationDate reservationDate) {
         if (reservationDate.day() % WEEK == FRIDAY ||
                 reservationDate.day() % WEEK == SATURDAY) {
 
-            return DiscountDateWeek.WEEKEND;
+            return WeekDiscountType.WEEKEND;
         }
 
-        return DiscountDateWeek.WEEKDAY;
+        return WeekDiscountType.WEEKDAY;
     }
 
-    private SpecialDiscountDate initSpecialDiscountDate(ReservationDate reservationDate) {
-        return Arrays.stream(SpecialDiscountDate.values())
+    private SpecialDayDiscount initSpecialDiscountDate(ReservationDate reservationDate) {
+        return Arrays.stream(SpecialDayDiscount.values())
                 .filter(specialDay ->
                         reservationDate.day() == specialDay.getDay())
                 .findFirst()
-                .orElse(SpecialDiscountDate.OTHER_DAY);
+                .orElse(SpecialDayDiscount.OTHER_DAY);
     }
 
     public ReservationDate getReservationDate() {
@@ -47,11 +47,11 @@ public class ReservationDateEvent {
         return christmasDiscount;
     }
 
-    public DiscountDateWeek getDiscountDateWeek() {
+    public WeekDiscountType getDiscountDateWeek() {
         return discountDateWeek;
     }
 
-    public SpecialDiscountDate getSpecialDiscountDate() {
+    public SpecialDayDiscount getSpecialDiscountDate() {
         return specialDiscountDate;
     }
 }
