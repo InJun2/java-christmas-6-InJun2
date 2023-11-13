@@ -1,6 +1,6 @@
 package christmas.model.event;
 
-public enum PromotionDate {
+public enum SpecialDiscountDate {
     THIRD_DAY(3, 1000),
     SEVENTH_DAY(7, 1000),
     TENTH_DAY(10, 1000),
@@ -8,12 +8,12 @@ public enum PromotionDate {
     TWENTY_FOURTH_DAY(24, 1000),
     TWENTY_FIFTH_DAY(25, 1000),
     THIRTY_FIRST_DAY(31, 1000),
-    OTHER_DAY(1, 0);
+    OTHER_DAY(-1, 0);
 
     private final int day;
     private final int discountPrice;
 
-    PromotionDate(int day, int discountPrice) {
+    SpecialDiscountDate(int day, int discountPrice) {
         this.day = day;
         this.discountPrice = discountPrice;
     }
