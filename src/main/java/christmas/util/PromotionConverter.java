@@ -1,6 +1,5 @@
-package christmas.converter;
+package christmas.util;
 
-import christmas.model.event.EventResult;
 import christmas.model.event.ReservationDateEvent;
 import christmas.model.event.dto.EventResultDTO;
 import christmas.model.event.dto.ReservationDateEventDTO;
@@ -20,8 +19,16 @@ public class PromotionConverter {
         return new OrderMenusDTO(orderMenus);
     }
 
-    public EventResultDTO toDto(EventResult eventResult) {
-        return new EventResultDTO(eventResult);
+    public EventResultDTO toDto(EventResultDTOFactory resultTextProcessor) {
+        return EventResultDTO.builder()
+                .orderMenus(resultTextProcessor.initOrderMenus())
+                .totalPriceBeforeDiscount(resultTextProcessor.initTotalPriceBeforeDiscount())
+                .giftMenu(resultTextProcessor.initGiftMenu())
+                .benefitHistory(resultTextProcessor.initBenefitHistory())
+                .totalBenefit(resultTextProcessor.initTotalBenefit())
+                .totalPriceAfterDiscount(resultTextProcessor.initPriceAfterDiscount())
+                .rewardBadge(resultTextProcessor.initRewardBadge())
+                .build();
     }
 
     public Map<MenuItem, Integer> convertToMenuItem(OrderMenusDTO orderMenusDTO) {

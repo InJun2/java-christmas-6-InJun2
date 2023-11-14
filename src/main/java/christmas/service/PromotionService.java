@@ -1,6 +1,7 @@
 package christmas.service;
 
-import christmas.converter.PromotionConverter;
+import christmas.util.EventResultDTOFactory;
+import christmas.util.PromotionConverter;
 import christmas.model.event.EventResult;
 import christmas.model.event.ReservationDateEvent;
 import christmas.model.event.dto.EventResultDTO;
@@ -21,7 +22,6 @@ public class PromotionService {
         return converter.toDto(event);
     }
 
-
     public OrderMenusDTO receiveOrderMenus(String inputMenus) {
         Map<String, Integer> inputOrderMenus = textProcessor.processOrder(inputMenus);
         OrderMenus orderMenus = new OrderMenus(inputOrderMenus);
@@ -33,6 +33,6 @@ public class PromotionService {
         EventResult eventResult = new EventResult(dateEventDTO
                 , converter.convertToMenuItem(orderMenusDto));
 
-        return converter.toDto(eventResult);
+        return converter.toDto(new EventResultDTOFactory(eventResult));
     }
 }
