@@ -1,9 +1,9 @@
 package christmas.run;
 
 import christmas.controller.PromotionController;
-import christmas.model.event.ReservationDateEvent;
-import christmas.model.event.dto.ReservationDateEventDto;
-import christmas.model.menu.dto.OrderMenusDto;
+import christmas.model.event.dto.EventResultDTO;
+import christmas.model.event.dto.ReservationDateEventDTO;
+import christmas.model.menu.dto.OrderMenusDTO;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -18,21 +18,32 @@ public class PromotionRun {
     }
 
     public void run() {
-        ReservationDateEventDto dateEventDto = generateEventByDate();
+        ReservationDateEventDTO dateEventDto = generateEventByDate();
+        OrderMenusDTO orderMenusDto = receiveOrderMenus();
 
-        OrderMenusDto orderMenusDto = receiveOrderMenus();
-
-//        -> Dto 이벤트 비교
+        EventResultDTO responseDto = applyEventsAndGenerateResult(dateEventDto, orderMenusDto);
+        System.out.println(responseDto.getBenefitHistory());
+        System.out.println(responseDto.getOrderMenus());
+        System.out.println(responseDto.getGiftMenu());
+        System.out.println(responseDto.getTotalBenefit());
+        System.out.println(responseDto.getTotalPriceBeforeDiscount());
+        System.out.println(responseDto.getTotalPriceAfterDiscount());
+        System.out.println(responseDto.getRewardBadge());
     }
 
-    private ReservationDateEventDto generateEventByDate() {
+    private ReservationDateEventDTO generateEventByDate() {
         String inputDate = inputReservationDate();
         return controller.generateEvent(inputDate);
     }
 
-    private OrderMenusDto receiveOrderMenus() {
+    private OrderMenusDTO receiveOrderMenus() {
         String inputMenus = inputOrderMenus();
         return controller.receiveOrderMenus(inputMenus);
+    }
+
+    private EventResultDTO applyEventsAndGenerateResult(ReservationDateEventDTO dateEventDTO,
+                                                        OrderMenusDTO orderMenusDto) {
+        return controller.applyEvents(dateEventDTO, orderMenusDto);
     }
 
     private String inputReservationDate() {
@@ -43,5 +54,4 @@ public class PromotionRun {
     private String inputOrderMenus() {
         return inputView.inputOrderMenus();
     }
-
 }
