@@ -1,5 +1,10 @@
 package christmas.model.menu;
 
+import christmas.exception.ExceptionMessage;
+import christmas.exception.PromotionException;
+
+import java.util.Arrays;
+
 public enum MenuItem {
     APPETIZER_MUSHROOM_SOUP("양송이수프", 6_000, MenuCategory.APPETIZER),
     APPETIZER_TAPAS("타파스", 5_500, MenuCategory.APPETIZER),
@@ -26,6 +31,14 @@ public enum MenuItem {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.menuCategory = menuCategory;
+    }
+
+    public static MenuItem findMenuItemByName(String itemName) {
+        return Arrays.stream(MenuItem.values())
+                .filter(menu -> menu.getItemName().equals(itemName))
+                .findFirst()
+                .orElseThrow(() ->
+                        new PromotionException(ExceptionMessage.INVALID_INPUT_ORDER));
     }
 
     public String getItemName() {
