@@ -20,7 +20,7 @@ public class OrderMenus {
     }
 
     private Map<MenuItem, Integer> validateOrderMenusByNames(Map<String, Integer> orderMenus) {
-        return generateOrderMenuEntry(orderMenus)
+        return generateOrderMenuValues(orderMenus)
                 .collect(Collectors.toUnmodifiableMap(
                         entry -> MenuItem.findMenuItemByName(entry.getKey()),
                         Map.Entry::getValue
@@ -35,7 +35,7 @@ public class OrderMenus {
     }
 
     private void validateOrderNumbers() {
-        generateOrderMenuEntry(orderMenus)
+        generateOrderMenuValues(orderMenus)
                 .filter(menu ->
                         menu.getValue() < MIN_ORDER_MENU_NUMBER)
                 .findAny()
@@ -43,7 +43,7 @@ public class OrderMenus {
     }
 
     private void validateTotalOrderNumbers() {
-        int orderNumber = generateOrderMenuEntry(orderMenus)
+        int orderNumber = generateOrderMenuValues(orderMenus)
                 .mapToInt(Map.Entry::getValue)
                 .sum();
 
@@ -53,7 +53,7 @@ public class OrderMenus {
     }
 
     private void validateOrderAllBeverage() {
-        boolean allBeverage = generateOrderMenuEntry(orderMenus)
+        boolean allBeverage = generateOrderMenuValues(orderMenus)
                 .allMatch(orderMenu ->
                         orderMenu.getKey().getMenuCategory() == MenuCategory.BEVERAGE);
 
@@ -63,7 +63,7 @@ public class OrderMenus {
     }
 
     private void validateTotalOrderAmount() {
-        int totalPrice = generateOrderMenuEntry(orderMenus)
+        int totalPrice = generateOrderMenuValues(orderMenus)
                 .mapToInt(orderMenu ->
                         orderMenu.getKey().getItemPrice() * orderMenu.getValue())
                 .sum();
@@ -73,7 +73,7 @@ public class OrderMenus {
         }
     }
 
-    private <K, V> Stream<Map.Entry<K, V>> generateOrderMenuEntry(Map<K, V> orderMenus) {
+    private <K, V> Stream<Map.Entry<K, V>> generateOrderMenuValues(Map<K, V> orderMenus) {
         return orderMenus.entrySet()
                 .stream();
     }
