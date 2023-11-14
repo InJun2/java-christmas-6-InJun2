@@ -1,6 +1,6 @@
-package christmas.model.event.dto;
+package christmas.model.event;
 
-enum EventResultDTOText {
+public enum EventResultText {
     EMPTY_TEXT(""),
     MENU_NUMBER("개"),
     MENU_PRICE_UNIT ("원"),
@@ -15,7 +15,7 @@ enum EventResultDTOText {
 
     private final String text;
 
-    EventResultDTOText(String text) {
+    EventResultText(String text) {
         this.text = text;
     }
 
