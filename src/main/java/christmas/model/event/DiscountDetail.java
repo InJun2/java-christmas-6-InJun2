@@ -19,8 +19,6 @@ public class DiscountDetail {
         this.totalPriceAfterDiscount = initTotalPriceAfterDiscount();
     }
 
-
-
     private int initTotalPriceAfterDiscount() {
         return totalPriceBeforeDiscount - getTotalDiscount();
     }
