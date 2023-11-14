@@ -1,10 +1,12 @@
 package christmas.service;
 
 import christmas.converter.PromotionConverter;
+import christmas.model.event.EventResult;
 import christmas.model.event.ReservationDateEvent;
-import christmas.model.event.dto.ReservationDateEventDto;
+import christmas.model.event.dto.EventResultDTO;
+import christmas.model.event.dto.ReservationDateEventDTO;
 import christmas.model.menu.OrderMenus;
-import christmas.model.menu.dto.OrderMenusDto;
+import christmas.model.menu.dto.OrderMenusDTO;
 
 import java.util.Map;
 
@@ -12,7 +14,7 @@ public class PromotionService {
     private final TextProcessor textProcessor = new TextProcessor();
     private final PromotionConverter converter = new PromotionConverter();
 
-    public ReservationDateEventDto generateEvent(String inputDay) {
+    public ReservationDateEventDTO generateEvent(String inputDay) {
         int day = textProcessor.parseInputDay(inputDay);
         ReservationDateEvent event = new ReservationDateEvent(day);
 
@@ -20,10 +22,17 @@ public class PromotionService {
     }
 
 
-    public OrderMenusDto receiveOrderMenus(String inputMenus) {
+    public OrderMenusDTO receiveOrderMenus(String inputMenus) {
         Map<String, Integer> inputOrderMenus = textProcessor.processOrder(inputMenus);
         OrderMenus orderMenus = new OrderMenus(inputOrderMenus);
 
         return converter.toDto(orderMenus);
+    }
+
+    public EventResultDTO applyEvents(ReservationDateEventDTO dateEventDTO, OrderMenusDTO orderMenusDto) {
+        EventResult eventResult = new EventResult(dateEventDTO
+                , converter.convertToMenuItem(orderMenusDto));
+
+        return converter.toDto(eventResult);
     }
 }
