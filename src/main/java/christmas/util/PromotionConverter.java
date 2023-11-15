@@ -1,5 +1,6 @@
 package christmas.util;
 
+import christmas.exception.ExceptionMessage;
 import christmas.model.event.ReservationDateEvent;
 import christmas.model.event.dto.EventResultDTO;
 import christmas.model.event.dto.ReservationDateEventDTO;
@@ -36,7 +37,7 @@ public class PromotionConverter {
                 .entrySet()
                 .stream()
                 .collect(Collectors.toMap(
-                        entry -> MenuItem.findMenuItemByName(entry.getKey()),
+                        entry -> MenuItem.findMenuItemByName(entry.getKey(), ExceptionMessage.INVALID_MENU_ITEM),
                         Map.Entry::getValue
                 ));
     }

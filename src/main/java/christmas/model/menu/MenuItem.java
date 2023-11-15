@@ -33,12 +33,12 @@ public enum MenuItem {
         this.menuCategory = menuCategory;
     }
 
-    public static MenuItem findMenuItemByName(String itemName) {
+    public static MenuItem findMenuItemByName(String itemName, ExceptionMessage message) {
         return Arrays.stream(MenuItem.values())
                 .filter(menu -> menu.getItemName().equals(itemName))
                 .findFirst()
                 .orElseThrow(() ->
-                        new PromotionException(ExceptionMessage.INVALID_MENU_ITEM));
+                        new PromotionException(message));
     }
 
     public String getItemName() {

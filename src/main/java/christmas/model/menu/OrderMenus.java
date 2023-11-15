@@ -21,7 +21,7 @@ public class OrderMenus {
     private Map<MenuItem, Integer> validateOrderMenusByNames(Map<String, Integer> orderMenus) {
         return generateOrderMenuValues(orderMenus)
                 .collect(Collectors.toUnmodifiableMap(
-                        entry -> MenuItem.findMenuItemByName(entry.getKey()),
+                        entry -> MenuItem.findMenuItemByName(entry.getKey(), ExceptionMessage.INVALID_INPUT_ORDER),
                         Map.Entry::getValue
                 ));
     }
