@@ -26,7 +26,7 @@ public class EventResultDTOFactory {
         builder.append(displayGiftEventBenefit());
 
         if (builder.isEmpty()) {
-            return EventResultText.NONE_BENEFIT.getText();
+            return EventResultText.NONE_BENEFIT.getText() + EventResultText.NEW_LINE.getText();
         }
 
         return builder.toString();
@@ -38,7 +38,7 @@ public class EventResultDTOFactory {
         String formattedTotalBenefit = formatMoneyWithCommas(totalBenefit) +
                 EventResultText.MENU_PRICE_UNIT.getText();
 
-        if(totalBenefit == DISCOUNT_AMOUNT_ZERO) {
+        if (totalBenefit == DISCOUNT_AMOUNT_ZERO) {
             return formattedTotalBenefit;
         }
 
@@ -72,7 +72,8 @@ public class EventResultDTOFactory {
             return GiftMenu.NONE.getGiftItem();
         }
 
-        return GiftMenu.CHAMPAGNE.getGiftItem() + " " + GIFT_NUMBER + EventResultText.MENU_NUMBER.getText();
+        return GiftMenu.CHAMPAGNE.getGiftItem() + EventResultText.SPACE.getText() +
+                GIFT_NUMBER + EventResultText.MENU_NUMBER.getText();
     }
 
     public String initRewardBadge() {
