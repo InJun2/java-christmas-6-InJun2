@@ -12,7 +12,7 @@ public class Application {
             InputView inputView = SingletonView.getInputView();
             OutputView outputView = SingletonView.getOutputView();
             PromotionRun promotionRun = new PromotionRun(inputView, outputView);
-            promotionRun.run();
+            promotionRun.runPromotion();
         }finally {
             Console.close();
         }
