@@ -1,15 +1,16 @@
-package christmas.model.event;
+package christmas.util;
 
-public enum EventResultText {
+enum EventResultText {
+    ORDER_OUTPUT_REGEX("%s %d%s"),
     EMPTY_TEXT(""),
     SPACE(" "),
     MENU_NUMBER("개"),
-    MENU_PRICE_UNIT ("원"),
+    MENU_PRICE_UNIT("원"),
     CHRISTMAS_D_DAY_DISCOUNT("크리스마스 디데이 할인"),
     SPECIAL_DISCOUNT("특별 할인"),
-    GIFT_EVENT ("증정 이벤트"),
-    NONE_BENEFIT ("없음"),
-    DISCOUNT_PRICE ("-"),
+    GIFT_EVENT("증정 이벤트"),
+    NONE_BENEFIT("없음"),
+    DISCOUNT_PRICE("-"),
     BENEFIT_SEPARATOR(": "),
     NEW_LINE("\n"),
     ;
