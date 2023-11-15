@@ -19,7 +19,7 @@ public class PromotionConverter {
         return new OrderMenusDTO(orderMenus);
     }
 
-    public EventResultDTO toDto(EventResultDTOFactory resultTextProcessor) {
+    public EventResultDTO toDto(EventResultTextFactory resultTextProcessor) {
         return EventResultDTO.builder()
                 .orderMenus(resultTextProcessor.initOrderMenus())
                 .totalPriceBeforeDiscount(resultTextProcessor.initTotalPriceBeforeDiscount())
