@@ -7,7 +7,8 @@ public enum SpecialDayDiscount {
     TWENTY_FOURTH_DAY(24, 1000),
     TWENTY_FIFTH_DAY(25, 1000),
     THIRTY_FIRST_DAY(31, 1000),
-    OTHER_DAY(0, 0);
+    OTHER_DAY(0, 0),
+    ;
 
     private final int day;
     private final int discountPrice;

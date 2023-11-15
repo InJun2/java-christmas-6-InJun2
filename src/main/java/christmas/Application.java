@@ -8,12 +8,12 @@ import christmas.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        try{
+        try {
             InputView inputView = SingletonView.getInputView();
             OutputView outputView = SingletonView.getOutputView();
             PromotionRun promotionRun = new PromotionRun(inputView, outputView);
             promotionRun.runPromotion();
-        }finally {
+        } finally {
             Console.close();
         }
     }

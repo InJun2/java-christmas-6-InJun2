@@ -7,12 +7,11 @@ enum InputViewMessage {
 
     private final String message;
 
-
     InputViewMessage(String message) {
         this.message = message;
     }
 
-    protected String getMessage() {
+    String getMessage() {
         return message;
     }
 }

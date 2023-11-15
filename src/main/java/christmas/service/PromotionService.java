@@ -1,6 +1,6 @@
 package christmas.service;
 
-import christmas.util.EventResultDTOFactory;
+import christmas.util.EventResultTextFactory;
 import christmas.util.PromotionConverter;
 import christmas.model.event.EventResult;
 import christmas.model.event.ReservationDateEvent;
@@ -33,6 +33,6 @@ public class PromotionService {
         EventResult eventResult = new EventResult(dateEventDTO
                 , converter.convertToMenuItem(orderMenusDto));
 
-        return converter.toDto(new EventResultDTOFactory(eventResult));
+        return converter.toDto(new EventResultTextFactory(eventResult));
     }
 }

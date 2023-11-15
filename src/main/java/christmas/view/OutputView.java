@@ -53,6 +53,7 @@ public class OutputView {
                 .getMessage());
         System.out.println(benefitHistory);
     }
+
     private void displayTotalBenefitAmount(String benefitHistory) {
         System.out.println(OutputViewMessage.TOTAL_BENEFIT_AMOUNT
                 .getMessage());

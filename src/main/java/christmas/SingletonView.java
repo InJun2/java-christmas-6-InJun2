@@ -7,7 +7,8 @@ class SingletonView {
     private static InputView inputView;
     private static OutputView outputView;
 
-    private SingletonView() {}
+    private SingletonView() {
+    }
 
     public static InputView getInputView() {
         if (inputView == null) {
