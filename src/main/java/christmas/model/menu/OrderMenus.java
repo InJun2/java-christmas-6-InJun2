@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 public class OrderMenus {
     private static final int MIN_ORDER_MENU_NUMBER = 1;
     private static final int MAX_ORDER_MENUS_NUMBER = 20;
-    private static final int MIN_ORDER_TOTAL_AMOUNT = 10000;
 
     private final Map<MenuItem, Integer> orderMenus;
 
@@ -31,7 +30,6 @@ public class OrderMenus {
         validateOrderNumbers();
         validateTotalOrderNumbers();
         validateOrderAllBeverage();
-        validateTotalOrderAmount();
     }
 
     private void validateOrderNumbers() {
@@ -58,17 +56,6 @@ public class OrderMenus {
                         orderMenu.getKey().getMenuCategory() == MenuCategory.BEVERAGE);
 
         if (allBeverage) {
-            throwInvalidOrderException();
-        }
-    }
-
-    private void validateTotalOrderAmount() {
-        int totalPrice = generateOrderMenuValues(orderMenus)
-                .mapToInt(orderMenu ->
-                        orderMenu.getKey().getItemPrice() * orderMenu.getValue())
-                .sum();
-
-        if (totalPrice < MIN_ORDER_TOTAL_AMOUNT) {
             throwInvalidOrderException();
         }
     }
