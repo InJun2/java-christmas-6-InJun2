@@ -28,7 +28,7 @@ public enum WeekDiscountType {
                         weekType.getDateType().equals(type))
                 .findFirst()
                 .orElseThrow(() ->
-                        new PromotionException(ExceptionMessage.INVALID_INPUT_ORDER));
+                        new PromotionException(ExceptionMessage.INVALID_WEEK_DISCOUNT_TYPE));
     }
 
     public String getDateType() {

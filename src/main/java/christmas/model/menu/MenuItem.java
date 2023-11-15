@@ -38,7 +38,7 @@ public enum MenuItem {
                 .filter(menu -> menu.getItemName().equals(itemName))
                 .findFirst()
                 .orElseThrow(() ->
-                        new PromotionException(ExceptionMessage.INVALID_INPUT_ORDER));
+                        new PromotionException(ExceptionMessage.INVALID_MENU_ITEM));
     }
 
     public String getItemName() {
