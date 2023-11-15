@@ -15,19 +15,10 @@ public class TextProcessor {
         return parseInput(input, ExceptionMessage.INVALID_INPUT_DATE);
     }
 
-    // 해당 메서드를 조금 분리해야 할듯, 중복 검사는 ","로 구분한 배열 중복 확인 시도?
     public Map<String, Integer> processOrder(String orderMenus) {
-        return Arrays.stream(orderMenus.split(MENU_SPLIT))
-                .peek(menu -> validateOrderMenuInput(menu.trim()))
-                .map(menuItemInfo ->
-                        menuItemInfo.trim().split(ORDER_NUMBER_SPLIT))
-                .collect(Collectors.toMap(
-                        menuNames -> menuNames[0],
-                        menuNumber -> parseInput(menuNumber[1], ExceptionMessage.INVALID_INPUT_ORDER),
-                        (existing, replacement) -> {
-                            throw new PromotionException(ExceptionMessage.INVALID_INPUT_ORDER);
-                        }
-                ));
+        List<String> menuArray = extractMenus(orderMenus);
+
+        return createOrderMap(menuArray);
     }
 
     private int parseInput(String input, ExceptionMessage exceptionMessage) {
@@ -38,8 +29,27 @@ public class TextProcessor {
         }
     }
 
+    private List<String> extractMenus(String inputOrderMenus) {
+        return Arrays.stream(inputOrderMenus.split(MENU_SPLIT))
+                .map(String::trim)
+                .peek(this::validateOrderMenuInput)
+                .toList();
+    }
+
+    private Map<String, Integer> createOrderMap(List<String> orderMenus) {
+        return orderMenus.stream()
+                .map(menuItemInfo -> menuItemInfo.split(ORDER_NUMBER_SPLIT))
+                .collect(Collectors.toUnmodifiableMap(
+                        menuItemSplit -> menuItemSplit[0].trim(),
+                        menuItemSplit -> parseInput(menuItemSplit[1].trim(), ExceptionMessage.INVALID_INPUT_ORDER),
+                        (existing, replacement) -> {
+                            throw new PromotionException(ExceptionMessage.INVALID_INPUT_ORDER);
+                        }
+                ));
+    }
+
     private void validateOrderMenuInput(String input) {
-        if(!input.matches(ORDER_MENU_INPUT_REGEX)) {
+        if (!input.matches(ORDER_MENU_INPUT_REGEX)) {
             throw new PromotionException(ExceptionMessage.INVALID_INPUT_ORDER);
         }
     }
