@@ -1,5 +1,8 @@
 package christmas.view;
 
+import christmas.exception.PromotionException;
+import christmas.model.event.dto.EventResultDTO;
+
 public class OutputView {
     public void displayStartPromotion() {
         System.out.println(OutputViewMessage.START_OUTPUT_VIEW
@@ -12,48 +15,63 @@ public class OutputView {
         System.out.println();
     }
 
-    public void displayOrderMenu(String orderMenus) {
+    public void displayException(PromotionException e) {
+        System.out.println(e.getMessage());
+        System.out.println();
+    }
+
+    public void outputEventResult(EventResultDTO responseDto) {
+        displayOrderMenu(responseDto.getOrderMenus());
+        displayOriginalTotalAmount(responseDto.getTotalPriceBeforeDiscount());
+        displayGiftMenu(responseDto.getGiftMenu());
+        displayBenefitHistory(responseDto.getBenefitHistory());
+        displayTotalBenefitAmount(responseDto.getTotalBenefit());
+        displayExpectedPayment(responseDto.getTotalPriceAfterDiscount());
+        displayDecemberEventBadge(responseDto.getRewardBadge());
+    }
+
+    private void displayOrderMenu(String orderMenus) {
         System.out.println(OutputViewMessage.ORDER_MENU
                 .getMessage());
-        displayOrderHistory(orderMenus);
+        System.out.println(orderMenus);
     }
 
-    public void displayOriginalTotalAmount(String totalAmount) {
+    private void displayOriginalTotalAmount(String totalAmount) {
         System.out.println(OutputViewMessage.ORIGINAL_ORDER_TOTAL_AMOUNT
                 .getMessage());
-        displayOrderHistory(totalAmount);
+        displayOrder(totalAmount);
     }
 
-    public void displayGiftMenu(String giftMenu) {
+    private void displayGiftMenu(String giftMenu) {
         System.out.println(OutputViewMessage.GIFT_MENU
                 .getMessage());
-        displayOrderHistory(giftMenu);
+        displayOrder(giftMenu);
     }
 
-    public void displayBenefitHistory(String benefitHistory) {
+    private void displayBenefitHistory(String benefitHistory) {
         System.out.println(OutputViewMessage.BENEFIT_HISTORY
                 .getMessage());
-        displayOrderHistory(benefitHistory);
+        System.out.println(benefitHistory);
     }
-    public void displayTotalBenefitAmount(String benefitHistory) {
+    private void displayTotalBenefitAmount(String benefitHistory) {
         System.out.println(OutputViewMessage.TOTAL_BENEFIT_AMOUNT
                 .getMessage());
-        displayOrderHistory(benefitHistory);
+        displayOrder(benefitHistory);
     }
 
-    public void displayExpectedPayment(String expectedPayment) {
+    private void displayExpectedPayment(String expectedPayment) {
         System.out.println(OutputViewMessage.EXPECTED_PAYMENT_AFTER_DISCOUNT
                 .getMessage());
-        displayOrderHistory(expectedPayment);
+        displayOrder(expectedPayment);
     }
 
-    public void displayDecemberEventBadge(String decemberEventBadge) {
+    private void displayDecemberEventBadge(String decemberEventBadge) {
         System.out.println(OutputViewMessage.DECEMBER_EVENT_BADGE
                 .getMessage());
-        displayOrderHistory(decemberEventBadge);
+        System.out.println(decemberEventBadge);
     }
 
-    private void displayOrderHistory(String orderHistory) {
+    private void displayOrder(String orderHistory) {
         System.out.println(orderHistory);
         System.out.println();
     }
