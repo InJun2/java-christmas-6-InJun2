@@ -2,6 +2,7 @@ package christmas.model.event;
 
 public enum EventResultText {
     EMPTY_TEXT(""),
+    SPACE(" "),
     MENU_NUMBER("개"),
     MENU_PRICE_UNIT ("원"),
     CHRISTMAS_D_DAY_DISCOUNT("크리스마스 디데이 할인"),
