@@ -10,12 +10,21 @@ public class DiscountDetail {
     private final int weekTypeDiscount;
     private final int specialDiscount;
 
-    public DiscountDetail(ReservationDateEventDTO dateEventDTO, int totalPriceBeforeDiscount, int weekTypeDiscount) {
+    protected DiscountDetail(ReservationDateEventDTO dateEventDTO, int totalPriceBeforeDiscount, int weekTypeDiscount) {
         this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
         this.weekDiscountType = WeekDiscountType.checkWeekType(dateEventDTO.getDateWeek());
         this.christmasDiscount = dateEventDTO.getChristmasDiscount();
         this.specialDiscount = dateEventDTO.getSpecialDiscount();
         this.weekTypeDiscount = weekTypeDiscount;
+        this.totalPriceAfterDiscount = initTotalPriceAfterDiscount();
+    }
+
+    protected DiscountDetail(ReservationDateEventDTO dateEventDTO, int totalPriceBeforeDiscount) {
+        this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
+        this.weekDiscountType = WeekDiscountType.checkWeekType(dateEventDTO.getDateWeek());
+        this.christmasDiscount = 0;
+        this.specialDiscount = 0;
+        this.weekTypeDiscount = 0;
         this.totalPriceAfterDiscount = initTotalPriceAfterDiscount();
     }
 

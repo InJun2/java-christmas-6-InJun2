@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class EventResult {
+    private static final int MIN_EVENT_AMOUNT = 10_000;
     private static final int GIFT_AMOUNT = 120_000;
 
     private final Map<MenuItem, Integer> orderMenus;
@@ -23,6 +24,9 @@ public class EventResult {
 
     private DiscountDetail initDiscountDetail(ReservationDateEventDTO dateEventDTO) {
         int totalPriceBeforeDiscount = getTotalPriceBeforeDiscount();
+        if (totalPriceBeforeDiscount < MIN_EVENT_AMOUNT) {
+            return new DiscountDetail(dateEventDTO, totalPriceBeforeDiscount);
+        }
         int weekDiscount = calculateWeekDiscount(dateEventDTO);
 
         return new DiscountDetail(dateEventDTO, totalPriceBeforeDiscount, weekDiscount);
