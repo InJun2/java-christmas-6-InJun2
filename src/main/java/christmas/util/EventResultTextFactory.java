@@ -1,20 +1,18 @@
 package christmas.util;
 
 import christmas.model.event.EventResult;
-import christmas.model.event.EventResultText;
 import christmas.model.event.GiftMenu;
 
 import java.text.NumberFormat;
 import java.util.stream.Collectors;
 
-public class EventResultDTOFactory {
+public class EventResultTextFactory {
     private static final int GIFT_NUMBER = 1;
     private static final int DISCOUNT_AMOUNT_ZERO = 0;
-    private static final String ORDER_OUTPUT_REGEX = "%s %d%s";
 
     private final EventResult result;
 
-    public EventResultDTOFactory(EventResult result) {
+    public EventResultTextFactory(EventResult result) {
         this.result = result;
     }
 
@@ -55,8 +53,8 @@ public class EventResultDTOFactory {
         return result.getOrderMenus()
                 .entrySet()
                 .stream()
-                .map(menu ->
-                        ORDER_OUTPUT_REGEX.formatted(menu.getKey().getItemName(), menu.getValue(),
+                .map(menu -> EventResultText.ORDER_OUTPUT_REGEX.getText()
+                        .formatted(menu.getKey().getItemName(), menu.getValue(),
                                 EventResultText.MENU_NUMBER.getText() + EventResultText.NEW_LINE.getText()))
                 .collect(Collectors.joining());
     }
