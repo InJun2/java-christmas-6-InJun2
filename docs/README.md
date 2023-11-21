@@ -95,5 +95,5 @@
 - 출력을 위한 DTO 생성에 대한 고민
   - DTO 룰 출력하고 해당 DTO 통해 다시 이벤트 내역 확인하는데 있어 DTO 값을 사용하는 방법
   - EventResultDTO 뷰에 출력할 문자열을 가지고 있을 DTO 생성 방법 고민 후 Builder, EventResultTextFactory 사용
-- 잘못된 입력에 대한 메서드 재실행 로직은 지난주 [장혁수님](https://github.com/zangsu) 코드리뷰로 배운 Supplier 반복 사용
+- 잘못된 입력에 대한 메서드 재실행 로직은 지난주 [zangsu님](https://github.com/zangsu) 코드리뷰로 배운 Supplier 반복 사용
 - 테스트 코드 mock 객체에 대한 사용방법에 대한 고민
